@@ -2,51 +2,51 @@
     "Partners" : [
     {
 	    "Material": ["wood", "tiles", "carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  50.0,
+        "AddressLongitude": 10.5,
+	    "OperatingRadius": 50,
 	    "Rating": 4.5
     },
     {
 	    "Material": ["wood", "tiles", "carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  52.382,
+        "AddressLongitude": 13.4,
+	    "OperatingRadius": 50,
 	    "Rating": 3.5
     },
     {
 	    "Material": ["wood", "tiles", "carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  52.50,
+        "AddressLongitude": 13.43,
+	    "OperatingRadius": 50,
 	    "Rating": 5.0
     },
     {
 	    "Material": ["carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  52.447,
+        "AddressLongitude": 13.39,
+	    "OperatingRadius": 50,
 	    "Rating": 3
     },
     {
 	    "Material": ["carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  52.447,
+        "AddressLongitude": 12.8,
+	    "OperatingRadius": 50,
 	    "Rating": 3
     },
     {
 	    "Material": ["carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  52.0,
+        "AddressLongitude": 13.15,
+	    "OperatingRadius": 50,
 	    "Rating": 4
     },
     {
 	    "Material": ["carpet"],
-	    "AddressLatitude":  49.895077,
-        "AddressLongitude": -97.138451,
-	    "OperatingRadius": 25,
+	    "AddressLatitude":  52.6,
+        "AddressLongitude": 13.12125,
+	    "OperatingRadius": 50,
 	    "Rating": 2.5
     }
     ]
