@@ -21,9 +21,11 @@ The test partners were placed mostly within 50km of AroundHome office address, s
 
 ### call from curl:
 On a command line with the api running you can call curl woth this example (or change the values of the json):
-`curl -H "Content-Type: application/json" -d '{"Material": "wood", "Latitude": 52.50879681532554, "Longitude": 13.375567271135349, "SquareMeters": 20, "Phone": "+49111111111"}' http://localhost:8080/request`
+
+`curl -H "Content-Type: application/json" -d '{"Material": "wood", "Latitude": 52.50879681532554, "Longitude": 13.375567271135349, "SquareMeters": 20, "Phone": 111111111}' http://localhost:8080/request`
 
 Alternatively you can put a request.json file with a valid request json (see example above) and call curl with:
+
 `curl -H "Content-Type: application/json" -d @request.json http://localhost:8080/request`
 
 # Challenge info

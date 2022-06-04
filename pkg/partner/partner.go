@@ -2,33 +2,37 @@ package partner
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"os"
 	"sort"
 
 	distance "AroundHomeChallenge/pkg/utils"
 )
 
-type PartnerList []Partner
-
-type Partner struct {
-	Material          []string
-	AddressLatitude   float64
-	AddressLongitude  float64
-	OperatingRadius   int
-	Rating            float32
-	distanceToRequest float64
+type PartnerList struct {
+	Partners []Partner `json:"Partners"`
 }
 
-func (pl PartnerList) Len() int      { return len(pl) }
-func (pl PartnerList) Swap(i, j int) { pl[i], pl[j] = pl[j], pl[i] }
+type Partner struct {
+	Material          []string `json:"Material"`
+	AddressLatitude   float64  `json:"AddressLatitude"`
+	AddressLongitude  float64  `json:"AddressLongitude"`
+	OperatingRadius   int      `json:"OperatingRadius"`
+	Rating            float32  `json:"Rating"`
+	distanceToRequest float64  `json:"DistanceToRequest,omitempty"`
+}
+
+func (pl PartnerList) Len() int      { return len(pl.Partners) }
+func (pl PartnerList) Swap(i, j int) { pl.Partners[i], pl.Partners[j] = pl.Partners[j], pl.Partners[i] }
 func (pl PartnerList) Less(i, j int) bool {
-	if pl[i].Rating < pl[j].Rating {
+	if pl.Partners[i].Rating < pl.Partners[j].Rating {
 		return false
 	}
-	if pl[i].Rating > pl[j].Rating {
+	if pl.Partners[i].Rating > pl.Partners[j].Rating {
 		return true
 	}
-	return pl[i].distanceToRequest < pl[j].distanceToRequest
+	return pl.Partners[i].distanceToRequest < pl.Partners[j].distanceToRequest
 }
 
 //Returns true if the requested material is on the list of materials known to the partner
@@ -53,9 +57,24 @@ func (p *Partner) WorksDistance(lat, lng float64) bool {
 //Even though in the challenge I'm getting from a static source, I'll abstract from that and do all the behaviour as if I was fetching from a dynamic one
 // for exapmple, for each request I will read/filter the source to get a updated list of partners and their expertises
 func GetAllPartners() PartnerList {
-	file, _ := ioutil.ReadFile("partner.json")
-	partners := PartnerList{}
-	_ = json.Unmarshal([]byte(file), &partners)
+
+	jsonFile, err := os.Open("pkg/partner/partner.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// defer the closing of the jsonFile
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	var partners PartnerList
+
+	err = json.Unmarshal(byteValue, &partners)
+	if err != nil {
+		fmt.Println("Error fetching partner list with error:", err)
+	}
+
+	fmt.Println("in GetAllPartners:", partners)
 
 	return partners
 }
@@ -66,14 +85,19 @@ func GetPartnersFiltered(material string, lat, lng float64) PartnerList {
 
 	partners := []Partner{}
 
-	for _, p := range allPartners {
+	for _, p := range allPartners.Partners {
 		if p.KnowsMaterial(material) && p.WorksDistance(lat, lng) {
+			fmt.Println("knows material as is within distance:", p)
 			partners = append(partners, p)
+		} else {
+			fmt.Println("distance is: ", p.distanceToRequest, " and radius:", p.OperatingRadius)
 		}
 	}
 
-	partnerList := PartnerList(partners)
+	partnerList := PartnerList{partners}
+	fmt.Println("unsorted list:", partnerList)
 	sort.Sort(partnerList)
+	fmt.Println("sorted list:", partnerList)
 
 	return partnerList
 }
