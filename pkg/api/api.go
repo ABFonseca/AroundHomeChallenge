@@ -18,6 +18,11 @@ type request struct {
 	Phone        uint    `json:"Phone"`
 }
 
+type ResponsePartner struct {
+	Name string `json:"Name"`
+	Id   int    `json:"Id"`
+}
+
 func StartWebservice() {
 	router := mux.NewRouter()
 
@@ -45,15 +50,31 @@ func customerRequest(w http.ResponseWriter, r *http.Request) {
 
 	partners := partner.GetPartnersFiltered(req.Material, req.AddressLat, req.AddressLng)
 
+	respPart := []ResponsePartner{}
+
+	for _, p := range partners.Partners {
+		newRespPart := ResponsePartner{Name: p.Name, Id: p.Id}
+		respPart = append(respPart, newRespPart)
+
+	}
+
 	w.Header().Set("content-type", "application/json")
-	json.NewEncoder(w).Encode(partners)
+	json.NewEncoder(w).Encode(respPart)
 }
 
 func listPartners(w http.ResponseWriter, r *http.Request) {
 	partners := partner.GetAllPartners()
 
+	respPart := []ResponsePartner{}
+
+	for _, p := range partners.Partners {
+		newRespPart := ResponsePartner{Name: p.Name, Id: p.Id}
+		respPart = append(respPart, newRespPart)
+
+	}
+
 	w.Header().Set("content-type", "application/json")
-	json.NewEncoder(w).Encode(partners)
+	json.NewEncoder(w).Encode(respPart)
 
 }
 
