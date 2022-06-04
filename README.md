@@ -33,6 +33,11 @@ On a command line with the api running you can call curl with this example (or c
 
 `curl http://localhost:8080/partner/199`
 
+### for a fuill list of partners (and id's)
+On a command line with the api running you can call curl with this example (or change the id of the partner)
+
+`curl http://localhost:8080/partner`
+
 # Challenge info
 For the purpose of this challenge some decisions were taken that in a production code would be done diferently
 * The partner list is in a json file
