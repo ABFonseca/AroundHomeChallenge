@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-// request address: 52.50879681532554, 13.375567271135349
-
 type knowsMaterialTests struct {
 	partner  Partner
 	material string
@@ -23,6 +21,7 @@ type worksDistanceTests struct {
 }
 
 func assertBool(t *testing.T, got, want bool, testName string) {
+	t.Helper()
 	if got != want {
 		failString := fmt.Sprintln("Test", testName, "got:", got, "wanted:", want)
 		t.Fatalf(failString)
@@ -67,7 +66,7 @@ func TestWorksDistance(t *testing.T) {
 			Partner{AddressLatitude: reqLat, AddressLongitude: 13.975567271135349, OperatingRadius: 25},
 			reqLat,
 			reqLng,
-			true,
+			false,
 			"Position to East out of range",
 		},
 		{
@@ -81,7 +80,7 @@ func TestWorksDistance(t *testing.T) {
 			Partner{AddressLatitude: reqLat, AddressLongitude: 13.005567271135349, OperatingRadius: 25},
 			reqLat,
 			reqLng,
-			true,
+			false,
 			"Position to West barely out of range",
 		},
 		{
@@ -95,7 +94,7 @@ func TestWorksDistance(t *testing.T) {
 			Partner{AddressLatitude: 52.70879681532554, AddressLongitude: reqLng, OperatingRadius: 20},
 			reqLat,
 			reqLng,
-			true,
+			false,
 			"Position to North out of range",
 		},
 		{
@@ -109,7 +108,7 @@ func TestWorksDistance(t *testing.T) {
 			Partner{AddressLatitude: 52.30879681532554, AddressLongitude: reqLng, OperatingRadius: 20},
 			reqLat,
 			reqLng,
-			true,
+			false,
 			"Position to North out of range",
 		},
 		{
@@ -123,7 +122,7 @@ func TestWorksDistance(t *testing.T) {
 			Partner{AddressLatitude: 52.40879681532554, AddressLongitude: 13.775567271135349, OperatingRadius: 25},
 			reqLat,
 			reqLng,
-			true,
+			false,
 			"Change Latitude and Longitude out of range",
 		},
 	}

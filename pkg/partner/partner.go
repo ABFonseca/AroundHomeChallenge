@@ -3,6 +3,7 @@ package partner
 import (
 	"encoding/json"
 	"io/ioutil"
+	"sort"
 
 	distance "AroundHomeChallenge/pkg/utils"
 )
@@ -30,6 +31,7 @@ func (pl PartnerList) Less(i, j int) bool {
 	return pl[i].distanceToRequest < pl[j].distanceToRequest
 }
 
+//Returns true if the requested material is on the list of materials known to the partner
 func (p Partner) KnowsMaterial(material string) bool {
 	for _, mat := range p.Material {
 		if mat == material {
@@ -39,9 +41,11 @@ func (p Partner) KnowsMaterial(material string) bool {
 	return false
 }
 
-func (p Partner) WorksDistance(lat, lng float64) bool {
+//Calculates distance to request and stores it on the object
+//returns if distance is below the OperatingRadius limit
+func (p *Partner) WorksDistance(lat, lng float64) bool {
 	dist := distance.Distance(lat, lng, p.AddressLatitude, p.AddressLongitude)
-	p.distanceToReq = dist
+	p.distanceToRequest = dist
 	return dist <= float64(p.OperatingRadius)
 }
 
@@ -68,5 +72,8 @@ func GetPartnersFiltered(material string, lat, lng float64) PartnerList {
 		}
 	}
 
-	return partners
+	partnerList := PartnerList(partners)
+	sort.Sort(partnerList)
+
+	return partnerList
 }

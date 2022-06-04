@@ -1,0 +1,53 @@
+{
+    "Partners" : [
+    {
+	    "Material": ["wood", "tiles", "carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 4.5
+    },
+    {
+	    "Material": ["wood", "tiles", "carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 3.5
+    },
+    {
+	    "Material": ["wood", "tiles", "carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 5.0
+    },
+    {
+	    "Material": ["carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 3
+    },
+    {
+	    "Material": ["carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 3
+    },
+    {
+	    "Material": ["carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 4
+    },
+    {
+	    "Material": ["carpet"],
+	    "AddressLatitude":  49.895077,
+        "AddressLongitude": -97.138451,
+	    "OperatingRadius": 25,
+	    "Rating": 2.5
+    }
+    ]
+}
