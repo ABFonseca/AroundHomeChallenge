@@ -15,11 +15,13 @@ type PartnerList struct {
 }
 
 type Partner struct {
+	Name              string   `json:"Name"`
 	Material          []string `json:"Material"`
 	AddressLatitude   float64  `json:"AddressLatitude"`
 	AddressLongitude  float64  `json:"AddressLongitude"`
 	OperatingRadius   int      `json:"OperatingRadius"`
 	Rating            float32  `json:"Rating"`
+	Id                int      `json:"Id"`
 	distanceToRequest float64
 }
 
@@ -97,8 +99,10 @@ func GetPartnersFiltered(material string, lat, lng float64) PartnerList {
 // Gets a Partner if the id is valid, the second param is the "ok" value which tells us if the get found a partner or not
 func GetPartnerDetails(partner_id int) (Partner, bool) {
 	allPartners := GetAllPartners()
-	if len(allPartners.Partners) > partner_id {
-		return allPartners.Partners[partner_id], true
+	for _, p := range allPartners.Partners {
+		if p.Id == partner_id {
+			return p, true
+		}
 	}
 	return Partner{}, false
 }

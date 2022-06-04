@@ -31,15 +31,14 @@ Alternatively you can put a request.json file with a valid request json (see exa
 ### call partner detail from curl:
 On a command line with the api running you can call curl with this example (or change the id of the partner)
 
-`curl http://localhost:8080/partner/1`
+`curl http://localhost:8080/partner/199`
 
 # Challenge info
 For the purpose of this challenge some decisions were taken that in a production code would be done diferently
 * The partner list is in a json file
- * even though it's a static json file we modulate the behaviour like if it wasn't and fetch the full list each time
- * The test partners were placed mostly within 50km of AroundHome office address
- * for the partner_id so it didn't need to be put in the json manually, I'm assuming that the id's are in order 0 to n-1
+  * even though it's a static json file we modulate the behaviour like if it wasn't and fetch the full list each time
+  * The test partners were placed mostly within 50km of AroundHome office address
 * No authentication was made in the API
-* I assumed the frontend builds the requests so I don't validate the request format or if it has missing fields
+* I assumed the frontend builds the requests (and not the user) so I don't validate the request format or if it has missing fields
 
 

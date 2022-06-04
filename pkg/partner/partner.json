@@ -1,6 +1,8 @@
 {
     "Partners" : [
     {
+		"Name": "AAA Floors",
+		"Id": 111,
 	    "Material": ["wood", "tiles", "carpet"],
 	    "AddressLatitude":  50.0,
         "AddressLongitude": 10.5,
@@ -8,6 +10,8 @@
 	    "Rating": 4.5
     },
     {
+		"Name": "Floor solutions",
+		"Id": 13,
 	    "Material": ["wood", "tiles", "carpet"],
 	    "AddressLatitude":  52.382,
         "AddressLongitude": 13.4,
@@ -15,6 +19,8 @@
 	    "Rating": 3.5
     },
     {
+	    "Name": "John Smith",
+		"Id": 624,
 	    "Material": ["wood", "tiles", "carpet"],
 	    "AddressLatitude":  52.50,
         "AddressLongitude": 13.43,
@@ -22,6 +28,8 @@
 	    "Rating": 5.0
     },
     {
+	    "Name": "Mr. Carpet",
+		"Id": 552,
 	    "Material": ["carpet"],
 	    "AddressLatitude":  52.447,
         "AddressLongitude": 13.39,
@@ -29,6 +37,8 @@
 	    "Rating": 3
     },
     {
+	    "Name": "Fluffy Carpets",
+		"Id": 199,
 	    "Material": ["carpet"],
 	    "AddressLatitude":  52.447,
         "AddressLongitude": 12.8,
@@ -36,6 +46,8 @@
 	    "Rating": 3
     },
     {
+	    "Name": "Carpet R' Us",
+		"Id": 3,
 	    "Material": ["carpet"],
 	    "AddressLatitude":  52.0,
         "AddressLongitude": 13.15,
@@ -43,6 +55,8 @@
 	    "Rating": 4
     },
     {
+	    "Name": "Quick and Cheap carpets",
+		"Id": 5,
 	    "Material": ["carpet"],
 	    "AddressLatitude":  52.6,
         "AddressLongitude": 13.12125,
