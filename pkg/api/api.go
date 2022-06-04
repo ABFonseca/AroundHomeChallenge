@@ -1,4 +1,4 @@
-package websevice
+package api
 
 import (
 	"AroundHomeChallenge/pkg/partner"
@@ -21,8 +21,8 @@ func StartWebservice() {
 	router := mux.NewRouter()
 
 	// Routes
-	router.HandleFunc("/partner", listPartners).Methods("GET")
 	router.HandleFunc("/request", CustomerRequest).Methods("POST")
+	router.HandleFunc("/partner", listPartners).Methods("GET")
 
 	// Start Server
 	http.ListenAndServe(":8080", router)
