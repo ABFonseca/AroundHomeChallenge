@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -21,22 +22,20 @@ func StartWebservice() {
 	router := mux.NewRouter()
 
 	// Routes
-	router.HandleFunc("/request", CustomerRequest).Methods("POST")
+	router.HandleFunc("/request", customerRequest).Methods("POST")
 	router.HandleFunc("/partner", listPartners).Methods("GET")
+	router.HandleFunc("/partner/{partner_id}", getPartner).Methods("GET")
 
 	// Start Server
 	fmt.Println("Starting API server on port 8080")
 	http.ListenAndServe(":8080", router)
 }
 
-func CustomerRequest(w http.ResponseWriter, r *http.Request) {
+func customerRequest(w http.ResponseWriter, r *http.Request) {
 	//reqBody, _ := ioutil.ReadAll(r.Body)
 	var req request
 	//err := json.Unmarshal(reqBody, &req)
 	err := json.NewDecoder(r.Body).Decode(&req)
-
-	//fmt.Println("Got Customer requestBody: ", reqBody)
-	fmt.Println("Got Customer request: ", req)
 
 	if err != nil {
 		fmt.Println("Error parsing json:", err)
@@ -46,8 +45,6 @@ func CustomerRequest(w http.ResponseWriter, r *http.Request) {
 
 	partners := partner.GetPartnersFiltered(req.Material, req.AddressLat, req.AddressLng)
 
-	fmt.Println("Partner list:", partners)
-
 	w.Header().Set("content-type", "application/json")
 	json.NewEncoder(w).Encode(partners)
 }
@@ -55,10 +52,25 @@ func CustomerRequest(w http.ResponseWriter, r *http.Request) {
 func listPartners(w http.ResponseWriter, r *http.Request) {
 	partners := partner.GetAllPartners()
 
-	fmt.Println("Got Partners request")
-	fmt.Println("Partner list:", partners)
-
 	w.Header().Set("content-type", "application/json")
 	json.NewEncoder(w).Encode(partners)
 
+}
+
+func getPartner(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	partner_id, err := strconv.Atoi(vars["partner_id"])
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	partner, ok := partner.GetPartnerDetails(partner_id)
+	if ok == false {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("content-type", "application/json")
+	json.NewEncoder(w).Encode(partner)
 }
